@@ -1,0 +1,17 @@
+[Unit]
+Description=Sobe o container do bot de ponto
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/home/julio/projetos/ponto_away
+ExecStart=/home/julio/projetos/ponto_away/scripts/wake-wsl.sh
+ExecStop=/usr/bin/docker compose stop
+TimeoutStartSec=180
+Restart=on-failure
+RestartSec=20
+
+[Install]
+WantedBy=multi-user.target
